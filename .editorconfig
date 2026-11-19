@@ -1,0 +1,26 @@
+# Estilo de código de SQL Asistente
+root = true
+
+[*]
+charset = utf-8
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{csproj,vsct,vsixmanifest,manifest,xml}]
+indent_size = 2
+
+[*.cs]
+max_line_length = 140
+csharp_new_line_before_open_brace = all
+csharp_prefer_braces = when_multiline:suggestion
+dotnet_sort_system_directives_first = true
+
+[src/SqlAsistente/Completado/SnippetsIncluidos.sql]
+# Algunos fragmentos terminan en espacio a propósito (por ejemplo "SELECT * FROM ").
+trim_trailing_whitespace = false
+
+[*.md]
+trim_trailing_whitespace = false

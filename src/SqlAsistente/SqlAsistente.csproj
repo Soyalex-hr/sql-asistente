@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>17.0</MinimumVisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectTypeGuids>{82b43b9b-a64c-4715-b499-d71e9ca2bd60};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{5A7C9E1B-3D2F-4A6B-8C0D-1E2F3A4B5C6D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SqlAsistente</RootNamespace>
+    <AssemblyName>SqlAsistente</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>latest</LangVersion>
+    <GeneratePkgDefFile>true</GeneratePkgDefFile>
+    <UseCodebase>true</UseCodebase>
+    <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
+    <CopyOutputSymbolsToOutputDirectory>true</CopyOutputSymbolsToOutputDirectory>
+    <!-- No se despliega en la instancia experimental de Visual Studio: el destino es SSMS. -->
+    <DeployExtension>false</DeployExtension>
+    <!-- Ruta de SSMS para depurar con F5 (cámbiala si usas SSMS 21). -->
+    <RutaSsms Condition="'$(RutaSsms)' == ''">C:\Program Files\Microsoft SQL Server Management Studio 22\Release\Common7\IDE</RutaSsms>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(RutaSsms)\SSMS.exe</StartProgram>
+    <StartArguments>/log</StartArguments>
+  </PropertyGroup>
+  <!-- Opcional: copiar el complemento directamente a SSMS al compilar.
+       Requiere abrir Visual Studio como administrador y compilar con /p:DesplegarEnSsms=true -->
+  <PropertyGroup Condition="'$(DesplegarEnSsms)' == 'true'">
+    <CopyVsixExtensionFiles>true</CopyVsixExtensionFiles>
+    <CopyVsixExtensionLocation>$(RutaSsms)\Extensions\SqlAsistente</CopyVsixExtensionLocation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlAsistentePackage.cs" />
+    <Compile Include="PackageGuids.cs" />
+    <Compile Include="ResolverEnsamblados.cs" />
+    <Compile Include="Comandos\ComandosAsistente.cs" />
+    <Compile Include="Editor\EditorHelper.cs" />
+    <Compile Include="Opciones\PaginaOpciones.cs" />
+    <Compile Include="Formato\FormateadorSql.cs" />
+    <Compile Include="Formato\PalabrasSql.cs" />
+    <Compile Include="Analisis\Hallazgo.cs" />
+    <Compile Include="Analisis\AnalizadorSql.cs" />
+    <Compile Include="Analisis\ReglasVisitor.cs" />
+    <Compile Include="Analisis\ListaErrores.cs" />
+    <Compile Include="Proteccion\GuardiaEjecucion.cs" />
+    <Compile Include="Historial\HistorialConsultas.cs" />
+    <Compile Include="Esquema\InfoConexion.cs" />
+    <Compile Include="Esquema\ConexionSsms.cs" />
+    <Compile Include="Esquema\ModeloEsquema.cs" />
+    <Compile Include="Esquema\CacheEsquema.cs" />
+    <Compile Include="Refactor\Refactorizaciones.cs" />
+    <Compile Include="Completado\ProveedorCompletado.cs" />
+    <Compile Include="Completado\FuenteCompletado.cs" />
+    <Compile Include="Completado\ContextoSql.cs" />
+    <Compile Include="Completado\GeneradorSugerencias.cs" />
+    <Compile Include="Completado\Snippets.cs" />
+    <Compile Include="Comandos\ComandosExtra.cs" />
+    <Compile Include="Datos\ConsultasBd.cs" />
+    <Compile Include="Ui\Ventanas.cs" />
+    <Compile Include="Editor\Navegacion.cs" />
+    <Compile Include="Editor\AvisosEnVivo.cs" />
+    <Compile Include="Editor\InfoRapida.cs" />
+    <Compile Include="Herramientas\Definiciones.cs" />
+    <Compile Include="Herramientas\GeneradorCSharp.cs" />
+    <Compile Include="Herramientas\ScriptDatos.cs" />
+    <Compile Include="Herramientas\BuscadorObjetos.cs" />
+    <Compile Include="Herramientas\RecuperacionPestanas.cs" />
+    <Compile Include="Herramientas\Renombrador.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Fragmentos (snippets) incluidos, en formato SQL legible -->
+    <EmbeddedResource Include="Completado\SnippetsIncluidos.sql">
+      <LogicalName>SqlAsistente.SnippetsIncluidos.sql</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="source.extension.vsixmanifest">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <VSCTCompile Include="SqlAsistente.vsct">
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SDK" Version="17.0.32112.339" ExcludeAssets="runtime">
+      <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="17.0.5232">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <!-- Analizador oficial de T-SQL de Microsoft (formateo y análisis). -->
+    <PackageReference Include="Microsoft.SqlServer.TransactSql.ScriptDom" Version="161.*" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

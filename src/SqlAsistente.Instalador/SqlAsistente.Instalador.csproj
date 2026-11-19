@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>InstalarSqlAsistente</AssemblyName>
+    <RootNamespace>SqlAsistente.Instalador</RootNamespace>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <!-- Debe correr en 64 bits para usar C:\Program Files y el registro de 64 bits -->
+    <Prefer32Bit>false</Prefer32Bit>
+    <Version>2.0.0</Version>
+    <FileVersion>2.0.0.0</FileVersion>
+    <Company>ALX</Company>
+    <Product>SQL Asistente</Product>
+    <Description>Instalador de SQL Asistente para SSMS 21/22</Description>
+    <Copyright>ALX 2026</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+
+  <!-- Compila primero el complemento y mete el .vsix dentro del instalador -->
+  <ItemGroup>
+    <ProjectReference Include="..\SqlAsistente\SqlAsistente.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <Private>false</Private>
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\SqlAsistente\bin\$(Configuration)\SqlAsistente.vsix">
+      <LogicalName>SqlAsistente.vsix</LogicalName>
+      <Link>SqlAsistente.vsix</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
