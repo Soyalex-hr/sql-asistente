@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="SqlAsistente.ALX.5a7c9e1b" Version="2.0.0" Language="es-ES" Publisher="ALX" />
+    <Identity Id="SqlAsistente.ALX.5a7c9e1b" Version="2.0.1" Language="es-ES" Publisher="ALX" />
     <DisplayName>SQL Asistente</DisplayName>
     <Description xml:space="preserve">Autocompletado inteligente, sugerencia de JOIN por llaves foráneas, formateo de consultas, análisis de código, protección al ejecutar, fragmentos (snippets) e historial de consultas para SQL Server Management Studio 21 y 22.</Description>
     <Tags>sql, ssms, t-sql, formateo, autocompletado, join</Tags>

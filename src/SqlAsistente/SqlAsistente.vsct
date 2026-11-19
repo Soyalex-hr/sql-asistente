@@ -18,6 +18,10 @@
     </Menus>
 
     <Groups>
+      <!-- Grupo dentro del menú Tools (Herramientas) de SSMS -->
+      <Group guid="guidSqlAsistenteCmdSet" id="GrupoEnHerramientas" priority="0x0050">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
       <Group guid="guidSqlAsistenteCmdSet" id="GrupoFormato" priority="0x0100">
         <Parent guid="guidSqlAsistenteCmdSet" id="MenuPrincipal" />
       </Group>
@@ -217,6 +221,16 @@
     </Buttons>
   </Commands>
 
+  <!--
+    SSMS 22 arma su barra de menús de otra forma que Visual Studio: el grupo IDG_VS_MM_TOOLSADDINS
+    puede no mostrarse. Por eso el menú "SQL Asistente" también se coloca dentro de Tools.
+  -->
+  <CommandPlacements>
+    <CommandPlacement guid="guidSqlAsistenteCmdSet" id="MenuPrincipal" priority="0x0100">
+      <Parent guid="guidSqlAsistenteCmdSet" id="GrupoEnHerramientas" />
+    </CommandPlacement>
+  </CommandPlacements>
+
   <!-- Atajos de teclado (se pueden cambiar en Herramientas > Opciones > Entorno > Teclado, buscando "SQLAsistente") -->
   <KeyBindings>
     <KeyBinding guid="guidSqlAsistenteCmdSet" id="cmdFormatear" editor="guidVSStd97" key1="K" mod1="Control" key2="Y" mod2="Control" />
@@ -239,6 +253,7 @@
       <IDSymbol name="GrupoOtros" value="0x1500" />
       <IDSymbol name="GrupoNavegacion" value="0x1600" />
       <IDSymbol name="GrupoCodigo" value="0x1700" />
+      <IDSymbol name="GrupoEnHerramientas" value="0x1800" />
 
       <IDSymbol name="cmdFormatear" value="0x0100" />
       <IDSymbol name="cmdMayusculas" value="0x0101" />

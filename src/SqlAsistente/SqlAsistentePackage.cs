@@ -12,8 +12,8 @@ namespace SqlAsistente
     /// para activar la protección al ejecutar (F5) y el historial de consultas.
     /// </summary>
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration("SQL Asistente", "Autocompletado, JOIN, formateo y análisis de SQL para SSMS", "2.0.0")]
-    [ProvideMenuResource("Menus.ctmenu", 1)]
+    [InstalledProductRegistration("SQL Asistente", "Autocompletado, JOIN, formateo y análisis de SQL para SSMS", "2.0.1")]
+    [ProvideMenuResource("Menus.ctmenu", 2)]
     [ProvideOptionPage(typeof(PaginaOpciones), "SQL Asistente", "General", 0, 0, true)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.NoSolution_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.SolutionExists_string, PackageAutoLoadFlags.BackgroundLoad)]

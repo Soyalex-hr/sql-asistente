@@ -181,22 +181,29 @@ namespace SqlAsistente.Instalador
             File.WriteAllText(marca, DateTime.Now.ToString("o"));
 
             log("  Actualizando la configuración de SSMS (puede tardar unos segundos)...");
+            // /setup vuelve a armar los menús; /updateconfiguration la caché de componentes del editor.
+            EjecutarSsms(destino, "/setup", log);
+            EjecutarSsms(destino, "/updateconfiguration", log);
+        }
+
+        private static void EjecutarSsms(InstalacionSsms destino, string argumento, Action<string> log)
+        {
             try
             {
                 var p = Process.Start(new ProcessStartInfo
                 {
                     FileName = Path.Combine(destino.CarpetaIde, "SSMS.exe"),
-                    Arguments = "/updateconfiguration",
+                    Arguments = argumento,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                     WindowStyle = ProcessWindowStyle.Hidden
                 });
                 if (p != null && !p.WaitForExit(180000))
-                    log("  Aviso: SSMS tardó demasiado en actualizarse; se aplicará al abrirlo.");
+                    log($"  Aviso: SSMS {argumento} tardó demasiado; se aplicará al abrir SSMS.");
             }
             catch (Exception ex)
             {
-                log("  Aviso: no se pudo ejecutar SSMS /updateconfiguration (" + ex.Message + "). Se aplicará al abrir SSMS.");
+                log($"  Aviso: no se pudo ejecutar SSMS {argumento} ({ex.Message}). Se aplicará al abrir SSMS.");
             }
         }
 
