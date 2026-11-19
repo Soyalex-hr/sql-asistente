@@ -7,6 +7,7 @@
     <AssemblyName>InstalarSqlAsistente</AssemblyName>
     <RootNamespace>SqlAsistente.Instalador</RootNamespace>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Recursos\icono.ico</ApplicationIcon>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <!-- Debe correr en 64 bits para usar C:\Program Files y el registro de 64 bits -->
     <Prefer32Bit>false</Prefer32Bit>
@@ -33,6 +34,12 @@
       <Private>false</Private>
       <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Recursos\icono.ico">
+      <LogicalName>icono.ico</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
