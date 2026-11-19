@@ -77,6 +77,7 @@
     <Compile Include="Esquema\CacheEsquema.cs" />
     <Compile Include="Refactor\Refactorizaciones.cs" />
     <Compile Include="Completado\ProveedorCompletado.cs" />
+    <Compile Include="Completado\ConfirmacionCompletado.cs" />
     <Compile Include="Completado\FuenteCompletado.cs" />
     <Compile Include="Completado\ContextoSql.cs" />
     <Compile Include="Completado\GeneradorSugerencias.cs" />

@@ -67,6 +67,17 @@ namespace SqlAsistente
         public bool MostrarAutomaticamente { get; set; } = true;
 
         [Category("2. Autocompletado")]
+        [DisplayName("Aceptar sugerencia con Enter")]
+        [Description("SoloSiCoincide: Enter acepta solo si lo que escribiste es el comienzo de la sugerencia; si no, hace salto " +
+            "de línea normal. Nunca: solo se acepta con Tab. Siempre: Enter acepta lo que esté marcado. Tab acepta siempre.")]
+        public ModoEnter EnterAcepta { get; set; } = ModoEnter.SoloSiCoincide;
+
+        [Category("2. Autocompletado")]
+        [DisplayName("Respetar minúsculas")]
+        [Description("Si escribes una palabra clave en minúscula (select, from, where), se completa en minúscula.")]
+        public bool RespetarMinusculas { get; set; } = true;
+
+        [Category("2. Autocompletado")]
         [DisplayName("Sugerir JOIN completo")]
         [Description("Al escribir JOIN sugiere la tabla relacionada con su ON, usando las llaves foráneas.")]
         public bool SugerirJoin { get; set; } = true;
